@@ -1,0 +1,2 @@
+datasheet for stm32f407vg board
+http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00037051.pdf

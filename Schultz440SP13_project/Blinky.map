@@ -1,0 +1,186 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+SystemCoreClock     0x4               cMain.o
+testMode            0x4               cMain.o
+toneArr             0x2000            cMain.o
+Cint                0x4               cMain.o
+numTones            0x4               cMain.o
+msTicks             0x4               cMain.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.flash          0x08000000     0x3ddc
+ *(.cs3.interrupt_vector)
+ .cs3.interrupt_vector
+                0x08000000       0xb8 aStartup.o
+ *(.text .text.*)
+ .text          0x080000b8       0x4e aStartup.o
+                0x080000b8                Reset_Handler
+ *fill*         0x08000106        0x2 00
+ .text          0x08000108      0x600 aMikes_project_functions.o
+                0x08000108                mikes_IO_init
+                0x08000250                timer_init
+                0x080002c2                wallClk_init
+                0x0800032a                TIM2_IRQHandler
+                0x0800035e                TIM3_IRQHandler
+                0x08000396                display_bitpattern_at_digit
+                0x080003e2                mikes_get_switch
+                0x08000588                read_encoderA
+                0x080005b4                read_encoderB
+                0x080005e0                getTime
+ .text          0x08000708     0x1af8 aIOtest.obj
+                0x08000708                ST_P24DISPLAY_init
+                0x08000a2a                ST_P24SWITCH_init
+                0x08000c66                wrCATHODE_0
+                0x08000cf4                printHEX
+                0x08001624                displayEnab
+                0x08001ac4                getSWITCH
+                0x08001d5a                enabDIGIT_1
+                0x08001de8                DISPLAY_on
+                0x08001e06                DISPLAY_off
+                0x08001e24                ST_LED_init
+                0x08001f76                ST_BTN_init
+                0x08001fb0                ST_LED0_On
+                0x08001fc0                ST_LED1_On
+                0x08001fd0                ST_LED2_On
+                0x08001fe0                ST_LED3_On
+                0x08001ff0                ST_LED0_Off
+                0x08002000                ST_LED1_Off
+                0x08002010                ST_LED2_Off
+                0x08002020                ST_LED3_Off
+                0x08002030                ST_BTN_Get
+                0x08002044                testmacro
+                0x080020a6                asmLED_init
+                0x0800217c                asmBTN_init
+ .text          0x08002200     0x1bb4 cMain.o
+                0x08002200                SystemCoreClockUpdate
+                0x08002334                SysTick_Handler
+                0x08002358                Delay
+                0x08002390                display_num_at_digit
+                0x08002678                translate_digit_to_anode_bitpattern
+                0x08002788                mikes_display_update
+                0x08002804                arrtosi
+                0x080028ac                sitoarr
+                0x080029bc                decrement_arr
+                0x080029e8                increment_arr
+                0x08002a14                update_fsm_level2
+                0x08002c78                blink_playmode_led
+                0x08002cf8                blink_reset_led
+                0x08002e14                reset_intensity
+                0x08002e54                off_disp
+                0x08002ea8                zero_disp
+                0x08002efc                main
+ *(.rodata .rodata.*)
+ .rodata        0x08003db4       0x28 cMain.o
+                0x08003ddc                __sidata = .
+
+.glue_7         0x08003ddc        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x08003ddc        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x08003ddc        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x08003ddc        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.data_at_ram    0x20000000       0x40 load address 0x08003ddc
+                0x20000000                __sdata = .
+ *(.data .data.*)
+ .data          0x20000000        0x0 aStartup.o
+ .data          0x20000000       0x10 aMikes_project_functions.o
+ .data          0x20000010        0x0 aIOtest.obj
+ .data          0x20000010       0x14 cMain.o
+                0x20000010                digitvals
+                0x20000024                __edata = .
+                0x20000024                __sbss = .
+ *(.bss .bss.*)
+ .bss           0x20000024        0x0 aStartup.o
+ .bss           0x20000024        0x0 aMikes_project_functions.o
+ *fill*         0x20000024        0xc 00
+ .bss           0x20000030        0x0 aIOtest.obj
+ .bss           0x20000030       0x10 cMain.o
+                0x20000030                encoder_state_lvl1
+                0x20000031                encoder_state_lvl2
+                0x20000034                prevTime
+                0x20000038                offset
+                0x20000040                __ebss = .
+                0x20020000                __cs3_stack = 0x20020000
+LOAD aStartup.o
+LOAD aMikes_project_functions.o
+LOAD aIOtest.obj
+LOAD cMain.o
+LOAD c:/yagarto/bin/../lib/gcc/arm-none-eabi/4.6.2\libgcc.a
+START GROUP
+LOAD c:/yagarto/bin/../lib/gcc/arm-none-eabi/4.6.2\libgcc.a
+LOAD C:\yagarto\arm-none-eabi\lib\thumb\v7m\libg.a
+LOAD C:\yagarto\arm-none-eabi\lib\thumb\v7m\libc.a
+END GROUP
+OUTPUT(Blinky.elf elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x2d
+ .ARM.attributes
+                0x00000000       0x21 aStartup.o
+ .ARM.attributes
+                0x00000021       0x21 aMikes_project_functions.o
+ .ARM.attributes
+                0x00000042       0x21 aIOtest.obj
+ .ARM.attributes
+                0x00000063       0x31 cMain.o
+
+.comment        0x00000000       0x11
+ .comment       0x00000000       0x11 cMain.o
+                                 0x12 (size before relaxing)
+
+.debug_line     0x00000000      0x76b
+ .debug_line    0x00000000       0x63 aStartup.o
+ .debug_line    0x00000063      0x1d9 aMikes_project_functions.o
+ .debug_line    0x0000023c      0x52f cMain.o
+
+.debug_info     0x00000000      0xb8c
+ .debug_info    0x00000000       0x64 aStartup.o
+ .debug_info    0x00000064       0x66 aMikes_project_functions.o
+ .debug_info    0x000000ca      0xac2 cMain.o
+
+.debug_abbrev   0x00000000      0x218
+ .debug_abbrev  0x00000000       0x14 aStartup.o
+ .debug_abbrev  0x00000014       0x14 aMikes_project_functions.o
+ .debug_abbrev  0x00000028      0x1f0 cMain.o
+
+.debug_aranges  0x00000000       0x60
+ .debug_aranges
+                0x00000000       0x20 aStartup.o
+ .debug_aranges
+                0x00000020       0x20 aMikes_project_functions.o
+ .debug_aranges
+                0x00000040       0x20 cMain.o
+
+.debug_loc      0x00000000      0x38a
+ .debug_loc     0x00000000      0x38a cMain.o
+
+.debug_str      0x00000000      0x541
+ .debug_str     0x00000000      0x541 cMain.o
+                                0x59e (size before relaxing)
+
+.debug_frame    0x00000000      0x200
+ .debug_frame   0x00000000      0x200 cMain.o
+
+.bss            0x20000040     0x2014 load address 0x08003e1c
+ COMMON         0x20000040     0x2014 cMain.o
+                0x20000040                SystemCoreClock
+                0x20000044                testMode
+                0x20000048                toneArr
+                0x20002048                Cint
+                0x2000204c                numTones
+                0x20002050                msTicks
