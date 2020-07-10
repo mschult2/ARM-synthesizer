@@ -1,5 +1,5 @@
 # ARM Musical Synthesizer
-ARM microcontroller code for an interactive audio synthesizer.  C and ARM assembly.
+ARM microcontroller code for an interactive audio synthesizer.  Written in ARM assembly and C.
 
 The synethesizer is a circuit I made, consisting of an STM controller connected to mostly digital components for controlling display and input.
 
